@@ -34,120 +34,258 @@
             <div class="navbar-nav ms-auto">
                 <a class="nav-link" href="/home">Trang Chủ</a>
                 <a class="nav-link active" href="/crud">CRUD</a>
-                <a class="nav-link" href="/get-crud">Danh Sách</a>
+                <a class="nav-link" href="/get-crud">Danh Sách MySQL</a>
+                <a class="nav-link" href="/get-crud-mongo">Danh Sách MongoDB</a>
                 <a class="nav-link" href="/about">Giới Thiệu</a>
             </div>
         </div>
     </nav>
 
     <div class="container mt-4">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header bg-success text-white">
-                        <h3 class="card-title mb-0">
-                            <i class="fas fa-user-plus"></i> Tạo Người Dùng Mới
-                        </h3>
+        <!-- Database Selection Tabs -->
+        <ul class="nav nav-tabs mb-4" id="databaseTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="mysql-tab" data-bs-toggle="tab" data-bs-target="#mysql"
+                    type="button" role="tab" aria-controls="mysql" aria-selected="true">
+                    <i class="fas fa-database"></i> MySQL Database
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="mongodb-tab" data-bs-toggle="tab" data-bs-target="#mongodb" type="button"
+                    role="tab" aria-controls="mongodb" aria-selected="false">
+                    <i class="fas fa-leaf"></i> MongoDB Database
+                </button>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="databaseTabContent">
+            <!-- MySQL Tab -->
+            <div class="tab-pane fade show active" id="mysql" role="tabpanel" aria-labelledby="mysql-tab">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header bg-success text-white">
+                                <h3 class="card-title mb-0">
+                                    <i class="fas fa-user-plus"></i> Tạo Người Dùng Mới (MySQL)
+                                </h3>
+                            </div>
+                            <div class="card-body">
+                                <form action="/post-crud" method="POST">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="email" class="form-label">
+                                                    Email <span class="required">*</span>
+                                                </label>
+                                                <input type="email" class="form-control" id="email" name="email"
+                                                    required placeholder="Nhập địa chỉ email...">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="password" class="form-label">
+                                                    Mật Khẩu <span class="required">*</span>
+                                                </label>
+                                                <input type="password" class="form-control" id="password"
+                                                    name="password" required placeholder="Nhập mật khẩu...">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="firstName" class="form-label">
+                                                    Tên <span class="required">*</span>
+                                                </label>
+                                                <input type="text" class="form-control" id="firstName" name="firstName"
+                                                    required placeholder="Nhập tên...">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="lastName" class="form-label">
+                                                    Họ <span class="required">*</span>
+                                                </label>
+                                                <input type="text" class="form-control" id="lastName" name="lastName"
+                                                    required placeholder="Nhập họ...">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="address" class="form-label">Địa Chỉ</label>
+                                        <textarea class="form-control" id="address" name="address" rows="3"
+                                            placeholder="Nhập địa chỉ..."></textarea>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="phoneNumber" class="form-label">Số Điện Thoại</label>
+                                                <input type="tel" class="form-control" id="phoneNumber"
+                                                    name="phoneNumber" placeholder="Nhập số điện thoại...">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="gender" class="form-label">Giới Tính</label>
+                                                <select class="form-select" id="gender" name="gender">
+                                                    <option value="1">Nam</option>
+                                                    <option value="0">Nữ</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="roleId" class="form-label">Vai Trò</label>
+                                                <select class="form-select" id="roleId" name="roleId">
+                                                    <option value="">Chọn vai trò...</option>
+                                                    <option value="R1">Admin</option>
+                                                    <option value="R2">Doctor</option>
+                                                    <option value="R3">Patient</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="positionId" class="form-label">Vị Trí</label>
+                                                <input type="text" class="form-control" id="positionId"
+                                                    name="positionId" placeholder="Nhập vị trí...">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                        <a href="/get-crud" class="btn btn-secondary me-md-2">
+                                            <i class="fas fa-list"></i> Xem Danh Sách MySQL
+                                        </a>
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="fas fa-save"></i> Tạo Người Dùng MySQL
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <form action="/post-crud" method="POST">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="email" class="form-label">
-                                            Email <span class="required">*</span>
-                                        </label>
-                                        <input type="email" class="form-control" id="email" name="email" required
-                                            placeholder="Nhập địa chỉ email...">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="password" class="form-label">
-                                            Mật Khẩu <span class="required">*</span>
-                                        </label>
-                                        <input type="password" class="form-control" id="password" name="password"
-                                            required placeholder="Nhập mật khẩu...">
-                                    </div>
-                                </div>
-                            </div>
+                </div>
+            </div>
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="firstName" class="form-label">
-                                            Tên <span class="required">*</span>
-                                        </label>
-                                        <input type="text" class="form-control" id="firstName" name="firstName" required
-                                            placeholder="Nhập tên...">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="lastName" class="form-label">
-                                            Họ <span class="required">*</span>
-                                        </label>
-                                        <input type="text" class="form-control" id="lastName" name="lastName" required
-                                            placeholder="Nhập họ...">
-                                    </div>
-                                </div>
+            <!-- MongoDB Tab -->
+            <div class="tab-pane fade" id="mongodb" role="tabpanel" aria-labelledby="mongodb-tab">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header bg-info text-white">
+                                <h3 class="card-title mb-0">
+                                    <i class="fas fa-user-plus"></i> Tạo Người Dùng Mới (MongoDB)
+                                </h3>
                             </div>
+                            <div class="card-body">
+                                <form action="/post-crud-mongo" method="POST">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="emailMongo" class="form-label">
+                                                    Email <span class="required">*</span>
+                                                </label>
+                                                <input type="email" class="form-control" id="emailMongo" name="email"
+                                                    required placeholder="Nhập địa chỉ email...">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="passwordMongo" class="form-label">
+                                                    Mật Khẩu <span class="required">*</span>
+                                                </label>
+                                                <input type="password" class="form-control" id="passwordMongo"
+                                                    name="password" required placeholder="Nhập mật khẩu...">
+                                            </div>
+                                        </div>
+                                    </div>
 
-                            <div class="mb-3">
-                                <label for="address" class="form-label">Địa Chỉ</label>
-                                <textarea class="form-control" id="address" name="address" rows="3"
-                                    placeholder="Nhập địa chỉ..."></textarea>
-                            </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="firstNameMongo" class="form-label">
+                                                    Tên <span class="required">*</span>
+                                                </label>
+                                                <input type="text" class="form-control" id="firstNameMongo"
+                                                    name="firstName" required placeholder="Nhập tên...">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="lastNameMongo" class="form-label">
+                                                    Họ <span class="required">*</span>
+                                                </label>
+                                                <input type="text" class="form-control" id="lastNameMongo"
+                                                    name="lastName" required placeholder="Nhập họ...">
+                                            </div>
+                                        </div>
+                                    </div>
 
-                            <div class="row">
-                                <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="phoneNumber" class="form-label">Số Điện Thoại</label>
-                                        <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber"
-                                            placeholder="Nhập số điện thoại...">
+                                        <label for="addressMongo" class="form-label">Địa Chỉ</label>
+                                        <textarea class="form-control" id="addressMongo" name="address" rows="3"
+                                            placeholder="Nhập địa chỉ..."></textarea>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="gender" class="form-label">Giới Tính</label>
-                                        <select class="form-select" id="gender" name="gender">
-                                            <option value="1">Nam</option>
-                                            <option value="0">Nữ</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="roleId" class="form-label">Vai Trò</label>
-                                        <select class="form-select" id="roleId" name="roleId">
-                                            <option value="">Chọn vai trò...</option>
-                                            <option value="R1">Admin</option>
-                                            <option value="R2">Doctor</option>
-                                            <option value="R3">Patient</option>
-                                        </select>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="phoneNumberMongo" class="form-label">Số Điện Thoại</label>
+                                                <input type="tel" class="form-control" id="phoneNumberMongo"
+                                                    name="phoneNumber" placeholder="Nhập số điện thoại...">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="genderMongo" class="form-label">Giới Tính</label>
+                                                <select class="form-select" id="genderMongo" name="gender">
+                                                    <option value="1">Nam</option>
+                                                    <option value="0">Nữ</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="positionId" class="form-label">Vị Trí</label>
-                                        <input type="text" class="form-control" id="positionId" name="positionId"
-                                            placeholder="Nhập vị trí...">
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                <a href="/get-crud" class="btn btn-secondary me-md-2">
-                                    <i class="fas fa-list"></i> Xem Danh Sách
-                                </a>
-                                <button type="submit" class="btn btn-success">
-                                    <i class="fas fa-save"></i> Tạo Người Dùng
-                                </button>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="roleIdMongo" class="form-label">Vai Trò</label>
+                                                <select class="form-select" id="roleIdMongo" name="roleId">
+                                                    <option value="">Chọn vai trò...</option>
+                                                    <option value="R1">Admin</option>
+                                                    <option value="R2">Doctor</option>
+                                                    <option value="R3">Patient</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="positionIdMongo" class="form-label">Vị Trí</label>
+                                                <input type="text" class="form-control" id="positionIdMongo"
+                                                    name="positionId" placeholder="Nhập vị trí...">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                        <a href="/get-crud-mongo" class="btn btn-secondary me-md-2">
+                                            <i class="fas fa-list"></i> Xem Danh Sách MongoDB
+                                        </a>
+                                        <button type="submit" class="btn btn-info">
+                                            <i class="fas fa-save"></i> Tạo Người Dùng MongoDB
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -29,7 +29,8 @@
             <div class="navbar-nav ms-auto">
                 <a class="nav-link" href="/home">Trang Chủ</a>
                 <a class="nav-link" href="/crud">CRUD</a>
-                <a class="nav-link" href="/get-crud">Danh Sách</a>
+                <a class="nav-link" href="/get-crud">Danh Sách MySQL</a>
+                <a class="nav-link" href="/get-crud-mongo">Danh Sách MongoDB</a>
                 <a class="nav-link" href="/about">Giới Thiệu</a>
             </div>
         </div>
@@ -45,25 +46,65 @@
                         </h3>
                     </div>
                     <div class="card-body">
-                        <p class="lead">Đây là trang chủ của hệ thống quản lý người dùng. Bạn có thể:</p>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <i class="fas fa-plus text-success"></i>
-                                <a href="/crud" class="text-decoration-none">Tạo người dùng mới</a>
-                            </li>
-                            <li class="list-group-item">
-                                <i class="fas fa-list text-info"></i>
-                                <a href="/get-crud" class="text-decoration-none">Xem danh sách người dùng</a>
-                            </li>
-                            <li class="list-group-item">
-                                <i class="fas fa-edit text-warning"></i>
-                                Chỉnh sửa thông tin người dùng
-                            </li>
-                            <li class="list-group-item">
-                                <i class="fas fa-trash text-danger"></i>
-                                Xóa người dùng
-                            </li>
-                        </ul>
+                        <p class="lead">Đây là trang chủ của hệ thống quản lý người dùng với khả năng kết nối đồng thời
+                            cả MySQL và MongoDB. Bạn có thể:</p>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card border-success">
+                                    <div class="card-header bg-success text-white">
+                                        <h5 class="mb-0"><i class="fas fa-database"></i> MySQL Database</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">
+                                                <i class="fas fa-plus text-success"></i>
+                                                <a href="/crud" class="text-decoration-none">Tạo người dùng MySQL</a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <i class="fas fa-list text-info"></i>
+                                                <a href="/get-crud" class="text-decoration-none">Xem danh sách MySQL</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="card border-info">
+                                    <div class="card-header bg-info text-white">
+                                        <h5 class="mb-0"><i class="fas fa-leaf"></i> MongoDB Database</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">
+                                                <i class="fas fa-plus text-info"></i>
+                                                <a href="/crud" class="text-decoration-none">Tạo người dùng MongoDB</a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <i class="fas fa-list text-info"></i>
+                                                <a href="/get-crud-mongo" class="text-decoration-none">Xem danh sách
+                                                    MongoDB</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-3">
+                            <h6>Chức năng chung:</h6>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <i class="fas fa-edit text-warning"></i>
+                                    Chỉnh sửa thông tin người dùng
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-trash text-danger"></i>
+                                    Xóa người dùng
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

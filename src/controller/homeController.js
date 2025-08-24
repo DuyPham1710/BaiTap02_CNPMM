@@ -1,5 +1,6 @@
 const db = require("../models");
 const CRUDService = require("../services/CRUDService");
+const CRUDMongoService = require("../services/CRUDMongoService");
 
 let getHomePage = async (req, res) => {
     try {
@@ -36,7 +37,8 @@ const getFindAllCrud = async (req, res) => {
 const postCRUD = async (req, res) => {
     let message = await CRUDService.createNewUser(req.body);
     console.log(message);
-    return res.send("Post CRUD from server");
+    getFindAllCrud(req, res);
+    //return res.send("Post CRUD from server");
 };
 
 const getEditCRUD = async (req, res) => {
@@ -65,7 +67,7 @@ const deleteCRUD = async (req, res) => {
     if (userId) {
         try {
             await CRUDService.deleteUser(userId);
-            return res.send("Delete user successfully");
+            getFindAllCrud(req, res);
         } catch (error) {
             console.error("Error deleting user:", error);
             return res.status(500).send("Internal Server Error");
@@ -73,6 +75,7 @@ const deleteCRUD = async (req, res) => {
     } else {
         return res.send("User not found");
     }
+
 };
 
 module.exports = {
@@ -83,5 +86,5 @@ module.exports = {
     postCRUD,
     getEditCRUD,
     putCRUD,
-    deleteCRUD
+    deleteCRUD,
 };
